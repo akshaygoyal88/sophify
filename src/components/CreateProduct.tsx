@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
 
 interface Product {
@@ -83,8 +84,20 @@ const CreateProduct: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // e.preventDefault();
+
+    try {
+      const res = await axios.post("/api/create-product", product, {
+        headers: {
+          "Content-Type": "application/json", // Ensure the header is set
+        },
+      });
+      const response = res.data;
+      console.log("response products:", response);
+    } catch (error) {
+      console.error("Error submitting product:", error);
+    }
     console.log("Submitted product:", product);
   };
 
@@ -215,7 +228,7 @@ const CreateProduct: React.FC = () => {
               <input
                 type="text"
                 name={`option_${index}_values`}
-                value={option.values.join(", ")}
+                value={option.values}
                 onChange={(e) => handleChange(e, index, "values")}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />

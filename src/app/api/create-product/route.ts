@@ -74,6 +74,7 @@ export async function POST(req: Request) {
   // Parse request body
   const {
     title,
+
     body_html,
     vendor,
     product_type,
@@ -82,6 +83,16 @@ export async function POST(req: Request) {
     options,
     images,
   }: Product = await req.json();
+
+  console.log("Received product data:", {
+    title,
+
+    product_type,
+    tags,
+    variants,
+    options,
+    images,
+  });
 
   try {
     const response = await axios.post(
