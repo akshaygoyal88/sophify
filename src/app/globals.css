@@ -23,3 +23,15 @@
   height: auto; /* Maintain aspect ratio */
   border-radius: 4px; /* Optional rounded corners for images */
 }
+
+.product-grid {
+  position: relative; /* Make the grid a positioning context for the absolute positioning */
+  padding-bottom: 50px; /* Add padding to ensure there's space for the button */
+}
+
+.add-variant-button-container {
+  position: absolute;
+  bottom: 10px; /* Distance from the bottom of the container */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset by half its width to truly center it */
+}

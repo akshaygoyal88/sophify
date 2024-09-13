@@ -34,7 +34,9 @@ export async function GET() {
       data: JSON.stringify({ query }),
     });
     console.log(response.data.data.products.edges, "response");
-    return new Response(JSON.stringify(response.data), { status: 200 });
+    return new Response(JSON.stringify(response.data), {
+      status: 200,
+    });
   } catch (error: unknown) {
     let errorMessage = "An unknown error occurred.";
     if (error instanceof Error) {
